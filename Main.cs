@@ -47,6 +47,7 @@ namespace DuskersGive {
 
 		[HarmonyPatch(typeof(Drone))]
 		[HarmonyPatch("ExecuteCommand")]
+		[HarmonyPatch(new Type[] { typeof(ExecutedCommand), typeof(bool) })]
 		class OnExecuteCommand {
 			static void Postfix(Drone __instance, ExecutedCommand command) {
 				if (active && command.Command.CommandName == "give") { // just in case unpatch fails
